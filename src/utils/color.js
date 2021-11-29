@@ -2,6 +2,7 @@
 export const Color = {
     WHITE: '#FFFFFF',
     BLACK: '#000000',
+    RED : '#FF0000',
     PRIMARY: '#323232',
     PRIMARY_DARK: '#445c6d',
     TRANSPARENT: 'transparent',
@@ -38,8 +39,6 @@ export const Color = {
     WHITE: '#FFFFFF',
     BLACK: '#000000',
     LIGHT_GRAY: '#e3dede',
-
-
     HIGHLIGHT_COLOR: '#DDDDDD',
     ERROR: '#FF0000',
     SUCCESS: '#008000',

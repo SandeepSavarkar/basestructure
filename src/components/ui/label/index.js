@@ -1,82 +1,68 @@
 import React from 'react';
-import { Text, Platform } from 'react-native';
+import { Text } from 'react-native';
 import { Color } from '../../../utils/color';
-//import {fontXSmall, fontSmall, fontNormal, fontLarge, fontXLarge, fontXXLarge} from 'src/utils/theme';
-// import Theme from "../../../utils/ThemeUtils"
 import PropTypes from 'prop-types';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-class Label extends React.Component {
+import { fontLarge, fontNormal, fontSmall, fontXLarge, fontXSmall, fontXXLarge, fontXXSmall, fontXXXLarge, fontXXXXLarge } from '../../../utils/themeUtils';
 
-    // constructor() {
-    //     super();
-    //     if (Text.defaultProps == null) Text.defaultProps = {};
-    //     Text.defaultProps.allowFontScaling = false;     //<--------Set allowFontScaling false for Screen
-    //   }
+const Label = (props) => {
 
-    onClick = () => {
-        if (this.props.onPress)
-            this.props.onPress();
+    const onClick = () => {
+        if (props.onPress)
+            props.onPress();
     };
 
-    render() {
-        let stylesArray = [];
-        if (this.props.xxxxlarge)
-            stylesArray.push({ fontSize: hp(4) });
-        else if (this.props.xxxlarge)
-            stylesArray.push({ fontSize: hp(3.4) });
-        else if (this.props.xxlarge)
-            stylesArray.push({ fontSize: hp(2.8) });
-        else if (this.props.xlarge)
-            stylesArray.push({ fontSize: hp(2.5) });
-        else if (this.props.large)
-            stylesArray.push({ fontSize: hp(2.1) });
-        else if (this.props.normal)
-            stylesArray.push({ fontSize: hp(1.9) });
-        else if (this.props.small)
-            stylesArray.push({ fontSize: hp(1.7) });
-        else if (this.props.xsmall)
-            stylesArray.push({ fontSize: hp(1.5) });
-        else if (this.props.xxsmall)
-            stylesArray.push({ fontSize: hp(1.2) });
-        else
-            stylesArray.push({ fontSize: hp(1.9) });
+    let stylesArray = [];
+    if (props.xxxxlarge)
+        stylesArray.push({ fontSize: fontXXXXLarge });
+    else if (props.xxxlarge)
+        stylesArray.push({ fontSize: fontXXXLarge });
+    else if (props.xxlarge)
+        stylesArray.push({ fontSize: fontXXLarge });
+    else if (props.xlarge)
+        stylesArray.push({ fontSize: fontXLarge });
+    else if (props.large)
+        stylesArray.push({ fontSize: fontLarge });
+    else if (props.normal)
+        stylesArray.push({ fontSize: fontNormal });
+    else if (props.small)
+        stylesArray.push({ fontSize: fontSmall });
+    else if (props.xsmall)
+        stylesArray.push({ fontSize: fontXSmall });
+    else if (props.xxsmall)
+        stylesArray.push({ fontSize: fontXXSmall });
+    else
+        stylesArray.push({ fontSize: fontNormal });
 
-        if (this.props.bold)
-            stylesArray.push({ fontWeight: "500" });
-        else if (this.props.bolder)
-            stylesArray.push({ fontWeight: "bold" });
-        else if (this.props.light)
-            stylesArray.push({ fontWeight: "400" });
-        else if (this.props.lighter)
-            stylesArray.push({ fontWeight: "200" });
-        else
-            stylesArray.push({ fontWeight: "normal" });
+    if (props.bold)
+        stylesArray.push({ fontWeight: "500" });
+    else if (props.bolder)
+        stylesArray.push({ fontWeight: "bold" });
+    else if (props.light)
+        stylesArray.push({ fontWeight: "400" });
+    else if (props.lighter)
+        stylesArray.push({ fontWeight: "200" });
+    else
+        stylesArray.push({ fontWeight: "normal" });
 
-        // if (this.props.sofia_bold)
-        //     stylesArray.push({ fontFamily: Platform.OS == "ios" ? "SofiaPro-Bold" : "Sofia-Pro-Bold-Az" });
-        // else if (this.props.sofia_medium)
-        //     stylesArray.push({ fontFamily: Platform.OS == "ios" ? "SofiaPro-Medium" : "Sofia-Pro-Medium-Az" });
-        // else
-        //     stylesArray.push({ fontFamily: Platform.OS == "ios" ? "SofiaPro" : "Sofia-Pro-Regular-Az" });
-
-        stylesArray.push({
-            color: this.props.color,
-            marginTop: this.props.mt,
-            marginBottom: this.props.mb,
-            marginStart: this.props.ms,
-            marginEnd: this.props.me,
-            textAlign: this.props.align,
-            lineHeight: this.props.lineHeight,
-            padding: this.props.padding
-        });
-        stylesArray.push(this.props.style);
-        return (
-            <Text allowFontScaling={false} numberOfLines={this.props.singleLine ? 1 : null} style={stylesArray}
-                onPress={this.props.onPress ? this.onClick : null} >
-                {this.props.children}
-            </Text>
-        );
-    }
+   
+    stylesArray.push({
+        color: props.color,
+        marginTop: props.mt,
+        marginBottom: props.mb,
+        marginStart: props.ms,
+        marginEnd: props.me,
+        textAlign: props.align,
+        lineHeight: props.lineHeight,
+        padding: props.padding
+    });
+    stylesArray.push(props.style);
+    return (
+        <Text allowFontScaling={false} numberOfLines={props.singleLine ? 1 : null} style={stylesArray}
+            onPress={props.onPress ? onClick : null} >
+            {props.children}
+        </Text>
+    );
 }
 
 Label.defaultProps = {

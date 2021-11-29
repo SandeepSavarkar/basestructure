@@ -1,18 +1,17 @@
 import { StyleSheet } from 'react-native'
 import { Color } from '../../../utils/color'
-import ThemeUtils from '../../../utils/themeUtils';
+import ThemeUtils, { responsiveHeight, responsiveWidth } from '../../../utils/themeUtils';
 
 const styles = StyleSheet.create({
     main_container: {
         alignItems: 'center'
     },
     button: {
-        width: 320,
-        height: 48,
-        borderRadius: 30,
+        width: '100%',
+        height: '100%',
+        borderRadius: responsiveWidth(12),
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10
     },
     text: {
         color: Color.WHITE,

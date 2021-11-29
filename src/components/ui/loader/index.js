@@ -7,7 +7,7 @@ const Loader = props => {
         loading,
         ...attributes
     } = props;
-
+    console.log('Loading',loading);
     return (
         <Modal
             transparent={true}

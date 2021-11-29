@@ -1,88 +1,34 @@
 import React from 'react';
-import {PixelRatio, Platform, Dimensions} from 'react-native';
-const {width, height} = Dimensions.get('window');
-const realWidth = height > width ? width : height;
+import { Dimensions, PixelRatio, useWindowDimensions } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-//REsponsive font
-
-const fontBaseXSmall = 12;
-const fontBaseSmall = 15;
-const fontBaseNormal = 17;
-const fontBaseLarge = 20;
-const fontBaseXLarge = 24;
-const fontBaseXXLarge = 28;
-
-
-
-const isIphoneX = () => {
-    let d = Dimensions.get('window');
-    const { height, width } = d;
-    return (
-        // This has to be iOS duh
-        Platform.OS === 'ios' &&
-        !Platform.isPad &&
-        !Platform.isTVOS &&
-
-        // Accounting for the height in either orientation
-        (height === 812 || width === 812)
-    );
-}
-
-const getStatusBarHeight = () => {
-    return Platform.select({
-        ios : isIphoneX() ? 44 : 20,
-        android: 0
-    })
-}
-
-const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
-const STATUSBAR_HEIGHT = getStatusBarHeight();
-const NAV_HEIGHT = APPBAR_HEIGHT + STATUSBAR_HEIGHT;
-const TAB_HEIGHT = 49;
-
-const myWidth = Dimensions.get('window').width;
-const myHeight = Dimensions.get('window').height;
-
-const relativeWidth = num => (myWidth * num) / 100;
-const relativeHeight = num => (myHeight * num) / 100;
-
-
-
-const isTablet = () => {
-    let pixelDensity = PixelRatio.get();
-    let adjustedWidth = width * pixelDensity;
-    let adjustedHeight = height * pixelDensity;
-    if (pixelDensity < 2 && (adjustedWidth >= 1000 || adjustedHeight >= 1000)) {
-        return true;
-    } else return pixelDensity === 2 && (adjustedWidth >= 1920 || adjustedHeight >= 1920);
+const isPortrait = () => {
+    const dim = Dimensions.get('screen');
+    return dim.height >= dim.width;
 };
 
-const responsiveFontSize = (fontSize) => {
-    let divider = isTablet() ? 600 : 375;
-    return Math.round(fontSize * realWidth / divider);
+/**
+ * Returns true of the screen is in landscape mode
+ */
+const isLandscape = () => {
+    const dim = Dimensions.get('screen');
+    return dim.width >= dim.height;
 };
+//===========Responsive Fonts============//
+export const fontXXSmall = hp(1.2);
+export const fontXSmall = hp(1.5);
+export const fontSmall = hp(1.7);
+export const fontNormal = hp(1.9);
+export const fontLarge = hp(2.1);
+export const fontXLarge = hp(2.5)
+export const fontXXLarge = hp(2.8);
+export const fontXXXLarge = hp(3.4);
+export const fontXXXXLarge = hp(4.0);
 
-const fontXSmall = responsiveFontSize(fontBaseXSmall);
-const fontSmall = responsiveFontSize(fontBaseSmall);
-const fontNormal = responsiveFontSize(fontBaseNormal);
-const fontLarge = responsiveFontSize(fontBaseLarge);
-const fontXLarge = responsiveFontSize(fontBaseXLarge);
-const fontXXLarge = responsiveFontSize(fontBaseXXLarge);
-
-const responsiveHeight = (height) => {
-    if (!isTablet())
-        return height;
-    else
-        return (height + (height * 0.25));
-};
-
-export const circleStyle = {
-    height: responsiveHeight(70),
-    width:responsiveHeight(70),
-    borderRadius: responsiveHeight(35)
-};
+//===========Responsive Height and Width============// 
+export const responsiveWidth = num => wp(num)
+export const responsiveHeight = num => hp(num)
 
 export default {
-    fontXSmall, fontSmall, fontNormal, fontLarge, fontXLarge, fontXXLarge, NAV_HEIGHT, responsiveHeight,
-    relativeWidth, relativeHeight,STATUSBAR_HEIGHT,isIphoneX,getStatusBarHeight,responsiveFontSize
+    fontXSmall, fontSmall, fontNormal, fontLarge, fontXLarge, fontXXLarge, responsiveHeight, responsiveWidth,
 };

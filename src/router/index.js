@@ -14,10 +14,13 @@ const RootNavigator = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name={Routes.Authenticated} component={Authenticated} options={{
-                    headerShown: false
+                <Stack.Screen name={Routes.NotAuthenticated} component={NotAuthenticated} options={{
+                    headerShown: false,
                 }} />
-                <Stack.Screen name={Routes.NotAuthenticated} component={NotAuthenticated} />
+                <Stack.Screen name={Routes.Authenticated} component={Authenticated} options={{
+                    headerShown: false,
+                }} />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

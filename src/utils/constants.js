@@ -51,7 +51,6 @@ const apiMethods = {
     DELETE: 'DELETE'
 };
 
-
 export default {
     notificationKey,
     responseCode,

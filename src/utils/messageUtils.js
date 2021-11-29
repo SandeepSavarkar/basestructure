@@ -1,10 +1,10 @@
 const Errors = {
-    nameBlank: "Please enter Name",
+    nameBlank: "Please enter name",
     nameLength: "Name characters exceed limit",
     nameInvalid: 'Name is invalid',
-    emailBlank: "Please enter Email",
+    emailBlank: "Please enter email",
     emailValidity: "Email is not valid",
-    pwdBlank: "Please enter Password",
+    pwdBlank: "Please enter password",
     pwdInvalid: "Please enter strong password. Ex: Abc@123",
     pwdLengthMinimum: "Password must be atleast 6 characters",
     pwdMisMatch: "Password not match",

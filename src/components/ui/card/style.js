@@ -1,28 +1,24 @@
 import { StyleSheet } from 'react-native';
-import { Color, ThemeUtils } from '../../../utils';
+import { Color } from '../../../utils';
+import { responsiveHeight, responsiveWidth } from '../../../utils/themeUtils';
 
-export const Style = StyleSheet.create({
+const styles = StyleSheet.create({
     card: {
-        height: ThemeUtils.relativeHeight(25),
-        width: ThemeUtils.relativeWidth(35),
+        height: responsiveHeight(30),
+        width: responsiveWidth(40),
         marginVertical: 7,
-        // paddingBottom:10,
         borderRadius: 20,
         elevation: 5,
-        // shadowColor: '#000',
-        // shadowOffset: {width: 0, height: 1},
-        // shadowOpacity: 0.5,
-        // shadowRadius: 2,
-        // shadowColor: '#000',
         backgroundColor: Color.WHITE,
         justifyContent: 'center',
-        marginLeft: 2
+        paddingHorizontal: responsiveWidth(2)
     },
     img: {
-        marginTop: 10,
-        borderRadius: 10,
-
-        width: ThemeUtils.relativeHeight(12),
-        height: ThemeUtils.relativeHeight(10),
+        marginTop: responsiveHeight(1),
+        borderRadius: responsiveHeight(1),
+        width: responsiveHeight(15),
+        height: responsiveHeight(12),
     },
 });
+
+export default styles;
