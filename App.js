@@ -24,7 +24,7 @@ const App = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, }}>
+    <SafeAreaView style={{ flex: 1}}>
       <NetworkProvider>
         <NetworkConsumer>
           {({ isConnected }) =>
