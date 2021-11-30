@@ -62,6 +62,7 @@ const InputText = (props) => {
     inputTextStylesArray.push({
         color: props.textColor,
         width: props.width,
+        height : '100%',
         borderWidth: 2,
         borderColor: 'black',
         borderRadius: props.border_radius,
