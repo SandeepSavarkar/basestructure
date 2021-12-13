@@ -25,7 +25,10 @@ export const Color = {
     BOX: '#E1E0CD',
     ORANGETH: '#FF9205',
     GREEN:"green",
-
+    BG_TAB:'#E1171D',
+    ACTIVE_TAB_INDEX:'#F4AFB2',
+    INACTIVE_TAB_INDEX:'#ea6166',
+    INACTIVE_TAB_BORDER:'#d9d9d9',
     // Main Colors
     // PRIMARY: '#62b34c', //APPLE
     PRIMARY_DARK: '#10353A', //FIRE_FLY

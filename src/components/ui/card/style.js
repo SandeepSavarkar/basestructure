@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { Color, ThemeUtils } from '../../../utils';
+import {Color} from '../../../utils/color';
+import ThemeUtils from '../../../utils/themeUtils';
 
 export const Style = StyleSheet.create({
     card: {
@@ -16,13 +17,13 @@ export const Style = StyleSheet.create({
         // shadowColor: '#000',
         backgroundColor: Color.WHITE,
         justifyContent: 'center',
-        marginLeft: 2
+        marginHorizontal:ThemeUtils.relativeWidth(2)
     },
     img: {
         marginTop: 10,
         borderRadius: 10,
 
-        width: ThemeUtils.relativeHeight(12),
-        height: ThemeUtils.relativeHeight(10),
+        width: ThemeUtils.relativeHeight(15),
+        height: ThemeUtils.relativeHeight(12),
     },
 });

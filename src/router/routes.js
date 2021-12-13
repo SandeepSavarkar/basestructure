@@ -22,5 +22,6 @@ const Routes = {
     IsDriver: 'IsDriver',
     DriverDemo: 'DriverDemo',
     ConfirmBooking: 'ConfirmBooking',
+    Store:'Store'
 };
 export default Routes;

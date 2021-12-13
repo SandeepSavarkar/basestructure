@@ -9,6 +9,9 @@ const Home = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate(Routes.Profile)}>
                 <Text>Profile</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate(Routes.Store)}>
+                <Text>Grid</Text>
+            </TouchableOpacity>
         </View>
     );
 }

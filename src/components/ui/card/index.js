@@ -3,15 +3,14 @@ import {Text, View, TouchableOpacity, Image} from 'react-native';
 
 import Label from '../label';
 import {Style} from './style';
-import {Color, ThemeUtils} from '../../../utils';
+import {Color} from '../../../utils/color';
+import ThemeUtils from '../../../utils/themeUtils';
 
 export default class Card extends Component {
   render() {
     return (
-      <View style={{marginRight: 15}}>
-
         <TouchableOpacity style={[Style.card, this.props.style]} onPress={this.props.onPress}>
-        <Label align="center" color={this.props.labelColor} style={{fontWeight: '600'}} small mt={ThemeUtils.relativeHeight(1)}> {this.props.labelp}</Label>
+        {/* <Label align="center" color={this.props.labelColor} style={{fontWeight: '600'}} small mt={ThemeUtils.relativeHeight(1)}> {this.props.labelp}</Label> */}
           
           <View style={{alignSelf:'center'}}>
               <Image style={[Style.img, this.props.imgstyle]} resizeMode='cover' source={this.props.img} />
@@ -23,7 +22,6 @@ export default class Card extends Component {
 
 
         </TouchableOpacity>
-      </View>
     );
   }
 }
