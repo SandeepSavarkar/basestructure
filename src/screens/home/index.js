@@ -13,10 +13,17 @@ import {
   Profile,
 } from 'react-native-fbsdk-next';
 
-import {View, Text, TouchableOpacity, NativeModules,StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  NativeModules,
+  StyleSheet,
+} from 'react-native';
 import Routes from '../../router/routes';
 
-const { RNTwitterSignIn } = NativeModules;
+const {RNTwitterSignIn} = NativeModules;
+
 const Home = ({navigation}) => {
   React.useEffect(() => {
     GoogleSignin.configure({
@@ -27,7 +34,7 @@ const Home = ({navigation}) => {
   }, []);
   const APIKEY = {
     TWITTER_CONSUMER_KEY: 'sPeIIVfg9EbJ9WXh8JB4XvU3u',
-    TWITTER_CONSUMER_SECRET: 'XRJeT4DCGMHWWndN226UF7uhM5UzRPbDp1mlFmDtbSdA89Ydro',
+    TWITTER_CONSUMER_SECRET:'XRJeT4DCGMHWWndN226UF7uhM5UzRPbDp1mlFmDtbSdA89Ydro',
   };
   const getCurrentUser = async () => {
     let currentUser = await GoogleSignin.getCurrentUser();
@@ -60,16 +67,25 @@ const Home = ({navigation}) => {
     }
   };
   const _twitterLogin = () => {
-    RNTwitterSignIn.init(APIKEY.TWITTER_CONSUMER_KEY, APIKEY.TWITTER_CONSUMER_SECRET).then(()=>{
-      console.log("Sdk initialized");
-    })
-    // RNTwitterSignIn.logIn()
-    //   .then(loginData => {
-    //     console.log(loginData, 'loginData');
-    //   })
-    //   .catch(error => {
-    //     console.log('error', error);
-    //   });
+    RNTwitterSignIn.init(
+      APIKEY.TWITTER_CONSUMER_KEY,
+      APIKEY.TWITTER_CONSUMER_SECRET,
+    )
+      .then(() => {
+        console.log('Sdk initialized');
+        RNTwitterSignIn.logIn()
+          .then(loginData => {
+            console.log(loginData, 'loginData_Of_twitter');
+            // {"authToken": "1246843229355380736-KTNdZhEagikREqTS3mVr5fYgqxEMqP",
+            //  "authTokenSecret": "qXQKbAgDm2XJZTJRqg4pZCamUcXqENGh9ew2ytrEgQxmI",
+            //   "email": null, "name": "Utsav84526220", 
+            //   "userID": "1246843229355380736", "userName": "Utsav84526220"} 
+          })
+          .catch(error => {
+            console.log('error', error);
+          });
+      })
+      .catch(error => {});
   };
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -108,7 +124,7 @@ const Home = ({navigation}) => {
         style={{backgroundColor: '#1DA1F2', padding: 10, borderRadius: 8}}>
         <Text>Twitter</Text>
       </TouchableOpacity>
-      
+
       <TouchableOpacity onPress={() => navigation.navigate(Routes.Profile)}>
         <Text>Profile</Text>
       </TouchableOpacity>
