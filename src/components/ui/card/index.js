@@ -3,7 +3,8 @@ import {Text, View, TouchableOpacity, Image} from 'react-native';
 
 import Label from '../label';
 import {Style} from './style';
-import {Color, ThemeUtils} from '../../../utils';
+import {Color} from '../../../utils/color';
+import ThemeUtils from '../../../utils/themeUtils';
 
 export default class Card extends Component {
   render() {

@@ -12,6 +12,11 @@ target 'basestructure' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-fbsdk-next', :path => '../node_modules/react-native-fbsdk-next'
+
+
+
+
   target 'basestructureTests' do
     inherit! :complete
     # Pods for testing

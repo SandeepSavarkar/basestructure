@@ -11,6 +11,8 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Settings,LoginButton, AccessToken,Profile } from 'react-native-fbsdk-next';
+
 import { NetworkProvider, NetworkConsumer, useIsConnected } from 'react-native-offline';
 import RootNavigator from './src/router';
 import SplashScreen from 'react-native-splash-screen';

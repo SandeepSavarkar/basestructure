@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">basestructure</string>
+    <string name="facebook_app_id">610115270245205</string>
+    <string name="facebook_client_token">Facebook Client ID</string>
+    <string name="fb_login_protocol_scheme">fb610115270245205</string>
 </resources>
