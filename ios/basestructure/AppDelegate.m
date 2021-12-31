@@ -3,6 +3,9 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <Firebase.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <TwitterKit/TWTRKit.h>
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -35,13 +38,16 @@ static void InitializeFlipper(UIApplication *application) {
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"basestructure"
                                             initialProperties:nil];
+//  [FBSDKApplicationDelegate.sharedInstance initializeSDK];
+  [FIRApp configure];
 
   if (@available(iOS 13.0, *)) {
       rootView.backgroundColor = [UIColor systemBackgroundColor];
   } else {
       rootView.backgroundColor = [UIColor whiteColor];
   }
-
+//  [[FBSDKApplicationDelegate sharedInstance] application:application
+//                             didFinishLaunchingWithOptions:launchOptions];
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;
@@ -49,6 +55,9 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
   return YES;
 }
+
+
+
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
@@ -58,5 +67,7 @@ static void InitializeFlipper(UIApplication *application) {
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 }
-
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+  return [[Twitter sharedInstance] application:app openURL:url options:options];
+}
 @end

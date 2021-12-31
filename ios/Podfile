@@ -2,7 +2,7 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '11.0'
-
+$FirebaseSDKVersion = '8.10.0'
 target 'basestructure' do
   config = use_native_modules!
 
@@ -11,16 +11,21 @@ target 'basestructure' do
     # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
+  pod 'GoogleSignIn', '~> 6.0.2'
 
   pod 'react-native-fbsdk-next', :path => '../node_modules/react-native-fbsdk-next'
 
+ # use_frameworks!
+  # pod 'TwitterKit', '~> 3.3.0'
 
 
+  pod 'react-native-twitter-signin', :path => '../node_modules/@react-native-twitter-signin/twitter-signin'
 
   target 'basestructureTests' do
     inherit! :complete
     # Pods for testing
   end
+
 
   # Enables Flipper.
   #

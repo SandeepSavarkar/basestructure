@@ -11,6 +11,7 @@ import {
   LoginButton,
   AccessToken,
   Profile,
+  ShareDialog
 } from 'react-native-fbsdk-next';
 
 import {
@@ -37,6 +38,7 @@ const Home = ({navigation}) => {
     TWITTER_CONSUMER_SECRET:'XRJeT4DCGMHWWndN226UF7uhM5UzRPbDp1mlFmDtbSdA89Ydro',
   };
   const getCurrentUser = async () => {
+    
     let currentUser = await GoogleSignin.getCurrentUser();
     let currentProfile = Profile.getCurrentProfile().then(function (
       currentProfile,
@@ -51,8 +53,9 @@ const Home = ({navigation}) => {
       }
     });
     console.log('profile', currentProfile);
-    // console.log('current user', currentUser);
+    console.log('current user', currentUser);
   };
+  
   const _signIn = async () => {
     const {idToken, user, scopes, serverAuthCode} = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -67,25 +70,28 @@ const Home = ({navigation}) => {
     }
   };
   const _twitterLogin = () => {
+    console.log("on-twitter-btn");
     RNTwitterSignIn.init(
       APIKEY.TWITTER_CONSUMER_KEY,
       APIKEY.TWITTER_CONSUMER_SECRET,
     )
       .then(() => {
-        console.log('Sdk initialized');
+        console.log('twitter-Sdk initialized');
         RNTwitterSignIn.logIn()
           .then(loginData => {
-            console.log(loginData, 'loginData_Of_twitter');
+            console.log(loginData, 'twitter-loginData_Of_twitter');
             // {"authToken": "1246843229355380736-KTNdZhEagikREqTS3mVr5fYgqxEMqP",
             //  "authTokenSecret": "qXQKbAgDm2XJZTJRqg4pZCamUcXqENGh9ew2ytrEgQxmI",
             //   "email": null, "name": "Utsav84526220", 
             //   "userID": "1246843229355380736", "userName": "Utsav84526220"} 
           })
           .catch(error => {
-            console.log('error', error);
+            console.log('twitter-login-error', error);
           });
       })
-      .catch(error => {});
+      .catch(error => {
+        console.log("twitter-init-error",error);
+      });
   };
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
