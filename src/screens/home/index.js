@@ -10,6 +10,7 @@ import {
   Settings,
   LoginButton,
   AccessToken,
+  AuthenticationToken,
   Profile,
   ShareDialog
 } from 'react-native-fbsdk-next';
@@ -20,6 +21,7 @@ import {
   TouchableOpacity,
   NativeModules,
   StyleSheet,
+  Platform
 } from 'react-native';
 import Routes from '../../router/routes';
 
@@ -64,20 +66,21 @@ const Home = ({navigation}) => {
   };
   const _signOut = async () => {
     try {
+      // const revoke = await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
     } catch (error) {
       console.log(error, 'error');
     }
   };
-  const _twitterLogin = () => {
+  const _twitterLogin = async() => {
     console.log("on-twitter-btn");
     RNTwitterSignIn.init(
       APIKEY.TWITTER_CONSUMER_KEY,
       APIKEY.TWITTER_CONSUMER_SECRET,
     )
-      .then(() => {
+      // .then(() => {
         console.log('twitter-Sdk initialized');
-        RNTwitterSignIn.logIn()
+       await RNTwitterSignIn.logIn()
           .then(loginData => {
             console.log(loginData, 'twitter-loginData_Of_twitter');
             // {"authToken": "1246843229355380736-KTNdZhEagikREqTS3mVr5fYgqxEMqP",
@@ -88,10 +91,10 @@ const Home = ({navigation}) => {
           .catch(error => {
             console.log('twitter-login-error', error);
           });
-      })
-      .catch(error => {
-        console.log("twitter-init-error",error);
-      });
+      // })
+      // .catch(error => {
+      //   console.log("twitter-init-error",error);
+      // });
   };
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -117,9 +120,15 @@ const Home = ({navigation}) => {
             } else if (result.isCancelled) {
               console.log('login is cancelled.');
             } else {
-              AccessToken.getCurrentAccessToken().then(data => {
-                console.log(data.accessToken.toString());
-              });
+              if (Platform.OS === 'ios') {
+                AuthenticationToken.getAuthenticationTokenIOS().then((data) => {
+                console.log(data?.authenticationToken,data);
+                });
+              } else {
+                AccessToken.getCurrentAccessToken().then((data) => {
+                  console.log(data?.accessToken.toString());
+                });
+              }
             }
           }}
           // onLogoutFinished={() => console.log("logout.")}
